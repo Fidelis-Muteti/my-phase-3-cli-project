@@ -140,4 +140,32 @@ def main_menu():
         print("11. Exit")
         choice = input("Enter your choice: ")
 
-       
+        if choice == "1":
+            create_supervisor()
+        elif choice == "2":
+            update_supervisor()
+        elif choice == "3":
+            delete_supervisor()
+        elif choice == "4":
+            create_employee()
+        elif choice == "5":
+            update_employee()
+        elif choice == "6":
+            delete_employee()
+        elif choice == "7":
+            assign_employee()
+        elif choice == "8":
+            list_supervisors()
+        elif choice == "9":
+            list_employees()
+        elif choice == "10":
+            view_employees_by_supervisor()
+        elif choice == "11":
+            print("Exiting...")
+            sys.exit()
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    init_db()
+    main_menu()
