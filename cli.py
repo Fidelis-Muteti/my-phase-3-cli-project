@@ -74,7 +74,15 @@ def update_employee():
     session.commit()
     print(f"Employee ID {employee_id} updated successfully")
 
-
+def delete_employee():
+    employee_id = int(input("Enter Employee ID to delete: "))
+    employee = session.get(Employee, employee_id)
+    if not employee:
+        print(f"Employee with ID {employee_id} does not exist.")
+        return
+    session.delete(employee)
+    session.commit()
+    print(f"Employee ID {employee_id} deleted successfully.")
 
 
 
