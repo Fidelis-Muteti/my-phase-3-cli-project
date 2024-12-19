@@ -43,6 +43,20 @@ def delete_supervisor():
     session.commit()
     print(f"Supervisor ID {supervisor_id} deleted successfully.")
 
+def create_employee():
+    name = input("Enter Employee name: ")
+    age = int(input("Enter Employee age: "))
+    supervisor_id = int(input("Enter Supervisor ID: "))
+    supervisor = session.get(Supervisor, supervisor_id)
+    if not supervisor:
+        print(f"Supervisor with ID {supervisor_id} does not exist.")
+        return
+    employee = Employee(name=name, age=age, supervisor_id=supervisor_id)
+    session.add(employee)
+    session.commit()
+    print(f"Employee '{name}' created with ID {employee.id} and assigned to Supervisor ID {supervisor_id}")
+
+
 
 
 
