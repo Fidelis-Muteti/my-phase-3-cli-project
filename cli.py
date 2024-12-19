@@ -96,7 +96,12 @@ def assign_employee():
     session.commit()
     print("Supervisor assigned successfully.")
 
-
+def list_supervisors():
+    supervisors = session.query(Supervisor).all()
+    if not supervisors:
+        print("No Supervisors found.")
+    for supervisor in supervisors:
+        print(supervisor)
 
 
 
