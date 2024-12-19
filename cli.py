@@ -33,6 +33,18 @@ def update_supervisor():
     session.commit()
     print(f"Supervisor ID {supervisor_id} updated successfully")
 
+def delete_supervisor():
+    supervisor_id = int(input("Enter Supervisor ID to delete: "))
+    supervisor = session.get(Supervisor, supervisor_id)
+    if not supervisor:
+        print(f"Supervisor with ID {supervisor_id} does not exist.")
+        return
+    session.delete(supervisor)
+    session.commit()
+    print(f"Supervisor ID {supervisor_id} deleted successfully.")
+
+
+
 
 
 
