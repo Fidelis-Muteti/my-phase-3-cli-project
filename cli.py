@@ -56,6 +56,23 @@ def create_employee():
     session.commit()
     print(f"Employee '{name}' created with ID {employee.id} and assigned to Supervisor ID {supervisor_id}")
 
+def update_employee():
+    employee_id = int(input("Enter Employee ID to update: "))
+    employee = session.get(Employee, employee_id)
+    if not employee:
+        print(f"Employee with ID {employee_id} does not exist.")
+        return
+    employee.name = input(f"Enter new name for Employee (current: {employee.name}): ") or employee.name
+    employee.age = int(input(f"Enter new age for Employee (current: {employee.age}): ") or employee.age)
+    new_supervisor_id = input(f"Enter new Supervisor ID for Employee (current: {employee.supervisor_id}): ") or employee.supervisor_id
+    if new_supervisor_id:
+        new_supervisor = session.get(Supervisor, int(new_supervisor_id))
+        if not new_supervisor:
+            print(f"Supervisor with ID {new_supervisor_id} does not exist. Skipping Supervisor update.")
+        else:
+            employee.supervisor_id = new_supervisor_id
+    session.commit()
+    print(f"Employee ID {employee_id} updated successfully")
 
 
 
