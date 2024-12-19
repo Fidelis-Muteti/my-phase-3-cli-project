@@ -110,3 +110,17 @@ def list_employees():
     for employee in employees:
         print(employee)
 
+def view_employees_by_supervisor():
+    supervisor_id = int(input("Enter Supervisor ID to view employees: "))
+    supervisor = session.get(Supervisor, supervisor_id)
+    if not supervisor:
+        print(f"Supervisor with ID {supervisor_id} does not exist.")
+        return
+    employees = supervisor.employees
+    if not employees:
+        print(f"No employees found for Supervisor with ID {supervisor_id}")
+        return
+    print(f"Employees under Supervisor '{supervisor.name}' (ID {supervisor_id}):")
+    for employee in employees:
+        print(employee)
+
