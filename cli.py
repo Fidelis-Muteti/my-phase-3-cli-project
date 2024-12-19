@@ -84,6 +84,17 @@ def delete_employee():
     session.commit()
     print(f"Employee ID {employee_id} deleted successfully.")
 
+def assign_employee():
+    employee_id = int(input("Enter Employee ID: "))
+    supervisor_id = int(input("Enter the new Supervisor ID: "))
+    employee = session.get(Employee, employee_id)
+    supervisor = session.get(Supervisor, supervisor_id)
+    if not employee or not supervisor:
+        print("Invalid Employee ID or Supervisor ID.")
+        return
+    employee.supervisor_id = supervisor_id
+    session.commit()
+    print("Supervisor assigned successfully.")
 
 
 
