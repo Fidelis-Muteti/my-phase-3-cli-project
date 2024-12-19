@@ -22,6 +22,18 @@ def create_supervisor():
     session.commit()
     print(f"Supervisor '{name}' created with ID {supervisor.id}")
 
+def update_supervisor():
+    supervisor_id = int(input("Enter Supervisor ID to update: "))
+    supervisor = session.get(Supervisor, supervisor_id)
+    if not supervisor:
+        print(f"Supervisor with ID {supervisor_id} does not exist.")
+        return
+    supervisor.name = input(f"Enter new name for Supervisor (current: {supervisor.name}): ") or supervisor.name
+    supervisor.email = input(f"Enter new email for Supervisor (current: {supervisor.email}): ") or supervisor.email
+    session.commit()
+    print(f"Supervisor ID {supervisor_id} updated successfully")
+
+
 
 
 
