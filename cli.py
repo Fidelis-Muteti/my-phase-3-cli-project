@@ -124,3 +124,20 @@ def view_employees_by_supervisor():
     for employee in employees:
         print(employee)
 
+def main_menu():
+    while True:
+        print("\nWelcome to the Application. What would you like to do?")
+        print("1. Create Supervisor")
+        print("2. Update Supervisor")
+        print("3. Delete Supervisor")
+        print("4. Create Employee")
+        print("5. Update Employee")
+        print("6. Delete Employee")
+        print("7. Assign Employee to Supervisor")
+        print("8. List Supervisors")
+        print("9. List Employees")
+        print("10. View Employees by Supervisor")
+        print("11. Exit")
+        choice = input("Enter your choice: ")
+
+       
