@@ -124,6 +124,50 @@ def view_employees_by_supervisor():
     for employee in employees:
         print(employee)
 
+def create_duty():
+    description = input("Enter duty description: ")
+    employee_id = int(input("Enter Employee ID: "))
+    employee = session.get(Employee, employee_id)
+    if not employee:
+        print(f"Employee with ID {employee_id} does not exist.")
+        return
+    duty = Duty(description=description, employee_id=employee_id)
+    session.add(duty)
+    session.commit()
+    print(f"Duty '{description}' created with ID {duty.id} and assigned to Employee ID {employee_id}")
+
+def list_duties():
+    duties = session.query(Duty).all()
+    if not duties:
+        print("No duties found.")
+    for duty in duties:
+        print(duty)
+
+def delete_duty():
+    duty_id = int(input("Enter Duty ID to delete: "))
+    duty = session.get(Duty, duty_id)
+    if not duty:
+        print(f"Duty with ID {duty_id} does not exist.")
+        return
+    session.delete(duty)
+    session.commit()
+    print(f"Duty ID {duty_id} deleted successfully")
+
+def view_duties_by_employee():
+    employee_id = int(input("Enter Employee ID to view duties: "))
+    employee = session.get(Employee, employee_id)
+    if not employee:
+        print(f"Employee with ID {employee_id} does not exist.")
+        return
+    duties = employee.duties
+    if not duties:
+        print(f"No duties found for Employee with ID {employee_id}")
+        return
+    print(f"Duties assigned to Employee '{employee.name}' (ID {employee_id}):")
+    for duty in duties:
+        print(duty)
+
+
 def main_menu():
     while True:
         print("\nWelcome to the Application. What would you like to do?")
