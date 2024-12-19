@@ -103,5 +103,10 @@ def list_supervisors():
     for supervisor in supervisors:
         print(supervisor)
 
-
+def list_employees():
+    employees = session.query(Employee).all()
+    if not employees:
+        print("No Employees found.")
+    for employee in employees:
+        print(employee)
 
